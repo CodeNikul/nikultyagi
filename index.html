@@ -3,84 +3,204 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Desdemona Cloud | School Project Showcase</title>
+  <title>The Desdemona Cloud | Screen2Skills Project Showcase</title>
   <style>
     :root {
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --accent: #0284c7;
-      --accent-light: #e0f2fe;
-      --text: #1e293b;
-      --text-sub: #475569;
-      --border: #e2e8f0;
+      /* Dark Cyber-Renaissance Palette */
+      --bg-root: #0a0a0c;
+      --bg-surface: #121216;
+      --bg-elevated: #1a1a20;
+      --bg-subtle: #22222a;
+      
+      --crimson: #e11d48;
+      --crimson-glow: rgba(225, 29, 72, 0.35);
+      --crimson-dark: #be123c;
+      --crimson-soft: rgba(225, 29, 72, 0.12);
+      
+      --text-main: #f8fafc;
+      --text-muted: #a1a1aa;
+      --text-dim: #71717a;
+      
+      --border-subtle: #272730;
+      --border-crimson: rgba(225, 29, 72, 0.4);
+      
+      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+      --shadow-red: 0 0 25px -5px var(--crimson-glow);
+      
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      
+      --font-scale: 0.95rem;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-root);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(225, 29, 72, 0.15) 0%, transparent 60%),
+        linear-gradient(to bottom, transparent, var(--bg-root));
+      color: var(--text-main);
       line-height: 1.6;
-      padding: 2rem 1rem;
+      padding: 3rem 1.5rem;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
     }
 
-    /* Header */
-    header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-      background: var(--card-bg);
-      padding: 2rem;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    }
-    header h1 {
-      font-size: 2.5rem;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-      font-weight: 800;
-    }
-    header p {
-      color: var(--text-sub);
-      font-size: 1.1rem;
-      font-weight: 500;
+    /* Ambient Theatrical Header Animation */
+    @keyframes theaterGlow {
+      0%, 100% { box-shadow: 0 0 35px -10px var(--crimson-glow); }
+      50% { box-shadow: 0 0 55px -5px rgba(225, 29, 72, 0.5); }
     }
 
-    /* Grid Layout */
+    header {
+      background: var(--bg-surface);
+      padding: 3.5rem 2.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-crimson);
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: theaterGlow 6s ease-in-out infinite;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, var(--crimson) 50%, transparent 100%);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      background: var(--crimson-soft);
+      color: #fb7185;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.4rem 1.2rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(225, 29, 72, 0.3);
+      margin-bottom: 1.2rem;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      line-height: 1.15;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 620px;
+    }
+
+    /* Professional Grid System */
     .showcase-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
-    @media (min-width: 900px) {
+    
+    @media (min-width: 1024px) {
       .showcase-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 10fr 11fr;
       }
     }
 
     .card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 1.5rem;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    
+    .card:hover {
+      border-color: var(--border-crimson);
+      box-shadow: var(--shadow-card), var(--shadow-red);
+      transform: translateY(-2px);
     }
 
-    .card h2 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      color: var(--accent);
-      border-bottom: 2px solid var(--accent-light);
-      padding-bottom: 0.5rem;
+    .card-header {
+      padding: 1.5rem 1.75rem;
+      border-bottom: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .card-header h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .card-header .icon {
+      color: var(--crimson);
+    }
+
+    /* UI UX: Interactive Text Scaling Controls */
+    .ux-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-root);
+      padding: 0.25rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .ux-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.3rem 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .ux-btn:hover, .ux-btn.active {
+      background: var(--crimson-soft);
+      color: #fb7185;
+    }
+
+    .card-body {
+      padding: 1.75rem;
+      flex: 1;
     }
 
     /* Canva Embed Container */
@@ -88,11 +208,13 @@
       position: relative;
       width: 100%;
       height: 0;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      padding-top: 56.25%;
       overflow: hidden;
-      border-radius: 12px;
-      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: #000;
     }
+    
     .canva-embed-wrapper iframe {
       position: absolute;
       width: 100%;
@@ -102,160 +224,391 @@
       border: none;
     }
 
-    /* Script Scrollable Area */
+    /* Script Teleprompter Screen */
     .script-box {
-      max-height: 520px;
+      max-height: 560px;
       overflow-y: auto;
       padding-right: 0.75rem;
+      font-size: var(--font-scale);
+      transition: font-size 0.2s ease;
     }
-    .script-box h3 {
-      color: var(--accent);
-      margin-top: 1.2rem;
-      margin-bottom: 0.4rem;
-      font-size: 1.05rem;
-      background: var(--accent-light);
-      padding: 0.3rem 0.6rem;
-      border-radius: 6px;
-      display: inline-block;
+    
+    .script-box::-webkit-scrollbar {
+      width: 6px;
     }
-    .script-box p {
-      color: var(--text);
-      margin-bottom: 0.8rem;
-      font-size: 0.95rem;
+    .script-box::-webkit-scrollbar-track {
+      background: var(--bg-root);
+      border-radius: 4px;
     }
-    .stage-dir {
-      font-style: italic;
-      color: #64748b;
-      background: #f1f5f9;
-      padding: 0.4rem 0.8rem;
-      border-left: 3px solid #94a3b8;
-      border-radius: 0 6px 6px 0;
+    .script-box::-webkit-scrollbar-thumb {
+      background: var(--border-subtle);
+      border-radius: 4px;
+    }
+    .script-box::-webkit-scrollbar-thumb:hover {
+      background: var(--crimson);
     }
 
-    /* Details Grid */
+    .script-box h3 {
+      color: #fb7185;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: var(--bg-elevated);
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--crimson);
+      display: inline-block;
+    }
+    
+    .script-box h3:first-child {
+      margin-top: 0;
+    }
+
+    .dialogue {
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding-left: 0.75rem;
+      border-left: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    
+    .dialogue:hover {
+      border-left-color: var(--crimson);
+    }
+
+    .character {
+      font-size: 0.75em;
+      font-weight: 800;
+      color: var(--crimson);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .text {
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .stage-dir {
+      font-style: italic;
+      color: var(--text-muted);
+      background: var(--bg-elevated);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9em;
+      margin: 1.25rem 0;
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--text-dim);
+    }
+
+    /* Production Dashboard Footer */
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
-    .info-card h3 {
-      font-size: 0.95rem;
-      color: var(--accent);
-      margin-bottom: 0.3rem;
+
+    .info-stat {
+      background: var(--bg-elevated);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      transition: border-color 0.2s;
+    }
+    
+    .info-stat:hover {
+      border-color: var(--border-crimson);
+    }
+
+    .info-stat span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-dim);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
     }
-    .info-card p {
-      color: var(--text);
-      font-weight: 600;
+
+    .info-stat strong {
+      font-size: 1.2rem;
+      color: var(--text-main);
     }
-    .cast-list {
-      list-style: none;
-      color: var(--text);
+
+    .cast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .cast-card {
+      background: var(--bg-elevated);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .cast-card:hover {
+      background: var(--bg-subtle);
+      border-color: var(--crimson);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px -5px var(--crimson-glow);
+    }
+
+    .cast-card strong {
+      display: block;
+      color: #fb7185;
       font-size: 0.95rem;
+      margin-bottom: 0.3rem;
     }
-    .cast-list li {
-      margin-bottom: 0.5rem;
-      padding-left: 0.5rem;
-      border-left: 2px solid var(--accent-light);
-    }
-    .cast-list strong {
-      color: var(--accent);
+
+    .cast-card span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      display: block;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
+    
+    <!-- Hero Header -->
     <header>
-      <h1>🎭 The Desdemona Cloud</h1>
-      <p>A Shakespearean Parody for Grades VII–IX | Screen2Skills By AANA</p>
+      <div class="badge">Screen2Skills • Stage Showcase</div>
+      <h1>The Desdemona Cloud</h1>
+      <p>A Shakespearean Parody & Modern Tech Satire for Grades VII–IX</p>
     </header>
 
+    <!-- Interactive Grid Area -->
     <div class="showcase-grid">
       
+      <!-- Slide Deck Embed -->
       <div class="card">
-        <h2>📊 Presentation Slides</h2>
-        <div class="canva-embed-wrapper">
-          <iframe loading="lazy" src="https://www.canva.com/design/DAHQ5ZgrL7M/NhrK3zAaRrfEN6q1aSMHAA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+        <div class="card-header">
+          <h2><span class="icon">🔴</span> Presentation Slide Deck</h2>
+        </div>
+        <div class="card-body">
+          <div class="canva-embed-wrapper">
+            <iframe loading="lazy" src="https://www.canva.com/design/DAHQ5ZgrL7M/NhrK3zAaRrfEN6q1aSMHAA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+          </div>
         </div>
       </div>
 
+      <!-- Script Teleprompter with Font Controls -->
       <div class="card">
-        <h2>📜 Play Script</h2>
-        <div class="script-box">
-          
-          <h3>Part 1: The Original Tragedy (Brief & Dramatic)</h3>
-          <p class="stage-dir">(The stage is dimly lit. Low, ominous, tragic orchestral music plays. Desdemona is asleep on a chair/bench. Othello paces the stage, looking tormented.)</p>
-          <p><strong>Othello:</strong> (Gazing at Desdemona) It is the cause, it is the cause, my soul! Yet I’ll not shed her blood, nor scar that whiter skin of hers than snow…</p>
-          <p><strong>Narrator:</strong> (Stepping out from the side, breaking the fourth wall) We all know the tragedy of the Moor of Venice. The villainous Iago convinced Othello that his wife, Desdemona, was unfaithful. The proof? A simple, lost strawberry-patterned handkerchief. No background checks. No double-checking. Just absolute chaos.</p>
-          <p><strong>Othello:</strong> (Waking Desdemona up roughly) Have you pray’d to-night, Desdemona? That handkerchief which I so loved and gave thee, thou gav’st to Cassio!</p>
-          <p><strong>Desdemona:</strong> (Pleading) No, by my life and soul! Send for the man and ask him!</p>
-          <p><strong>Othello:</strong> (Overcome with rage) Down, strumpet! It is too late!</p>
-          <p class="stage-dir">(Othello dramatically “smothers” Desdemona with a prop pillow. Desdemona freezes, comically collapsing. Othello weeps loudly. Music swells tragically.)</p>
+        <div class="card-header">
+          <h2><span class="icon">📜</span> Performance Script</h2>
+          <div class="ux-controls" aria-label="Adjust Teleprompter Font Size">
+            <button class="ux-btn" onclick="setFontScale('0.85rem', this)">S</button>
+            <button class="ux-btn active" onclick="setFontScale('0.95rem', this)">M</button>
+            <button class="ux-btn" onclick="setFontScale('1.1rem', this)">L</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="script-box" id="teleprompter">
+            
+            <h3>Part 1: The Original Tragedy (Brief & Dramatic)</h3>
+            <div class="stage-dir">(The stage is dimly lit. Low, ominous, tragic orchestral music plays. Desdemona is asleep on a chair/bench. Othello paces the stage, looking tormented.)</div>
+            
+            <div class="dialogue">
+              <span class="character">Othello</span>
+              <span class="text">(Gazing at Desdemona) It is the cause, it is the cause, my soul! Yet I’ll not shed her blood, nor scar that whiter skin of hers than snow…</span>
+            </div>
 
-          <h3>Part 2: The “Tech Hack” Transition</h3>
-          <p class="stage-dir">(A loud, modern “System Error / Record Scratch” SFX blares. Neon blue lights flood the stage. Desdemona immediately sits up, throws the pillow back at Othello, and looks at the audience.)</p>
-          <p><strong>Narrator:</strong> (Blowing a whistle) Hold on! Stop the suffocating! It is the 21st century. Why are we ending marriages over misplaced laundry? Let’s hack history!</p>
-          <p class="stage-dir">(The Tech In-Charge plays a futuristic “Smart Device Startup” sound effect.)</p>
-          <p><strong>Narrator:</strong> What if Desdemona wasn’t just a Renaissance lady, but a tech-forward individual who tracked her belongings? Presenting… The Apple AirTag (Venice Edition).</p>
+            <div class="dialogue">
+              <span class="character">Narrator</span>
+              <span class="text">(Stepping out from the side, breaking the fourth wall) We all know the tragedy of the Moor of Venice. The villainous Iago convinced Othello that his wife, Desdemona, was unfaithful. The proof? A simple, lost strawberry-patterned handkerchief. No background checks. No double-checking. Just absolute chaos.</span>
+            </div>
 
-          <h3>Part 3: The Hacked Ending (Satire & Innovation)</h3>
-          <p class="stage-dir">(The scene rewinds. Desdemona resets to sleeping. Othello is pacing, but this time, he is holding a large, over-sized cardboard smartphone. Iago sneaks up behind him, rubbing his hands together villainously.)</p>
-          <p><strong>Iago:</strong> (Whispering like a classic snake) O, beware, my lord, of jealousy; it is the green-eyed monster! Look to your wife. Did you not see her handkerchief in Cassio’s hand today?</p>
-          <p><strong>Othello:</strong> (Gasps dramatically, clutching his heart) No! My heart is turned to stone! The strawberry handkerchief?! I am undone!</p>
-          <p><strong>Iago:</strong> (Smirking to the audience) (Aside) My plan works perfectly. He believes me completely!</p>
-          <p><strong>Othello:</strong> (Suddenly stops, looks at his giant phone) Wait a minute. Desdemona is terrible at keeping track of her things. She loses her keys, her crown, her mind… which is exactly why I attached an AirTag to that fabric! Let me open the Find My App.</p>
-          <p class="stage-dir">(Tech plays a loud “Radar Beeping / Sonar Ping” sound effect that speeds up.)</p>
-          <p><strong>Othello:</strong> (Staring at the screen, squinting) Let’s see… AirTag ‘Handkerchief’ is currently located… inside… Iago’s back pocket?!</p>
-          <p><strong>Iago:</strong> (Eyes widen in absolute panic, freezing up) Uh… technological anomaly, my lord! A glitch in the Venetian matrix!</p>
-          <p><strong>Othello:</strong> (Presses a button on his giant phone) Let me tap “Play Sound” to confirm.</p>
-          <p class="stage-dir">(Tech plays a loud, unmistakable, high-pitched Chirp-Chirp-Chirp AirTag sound. Iago frantically tries to slap his own pocket to muffle the sound.)</p>
-          <p><strong>Othello:</strong> (Marching over, pulling a giant cardboard handkerchief out of Iago’s pocket) Villain! Thou hast been pinged by local bluetooth location tracking!</p>
+            <div class="dialogue">
+              <span class="character">Othello</span>
+              <span class="text">(Waking Desdemona up roughly) Have you pray’d to-night, Desdemona? That handkerchief which I so loved and gave thee, thou gav’st to Cassio!</span>
+            </div>
 
-          <h3>Part 4: The Comedic Twist & Conclusion</h3>
-          <p class="stage-dir">(Desdemona wakes up, wearing a pair of modern sunglasses, completely unbothered.)</p>
-          <p><strong>Desdemona:</strong> What is all this racket? Honestly, Othello, I told you I left it on the dining table, and Iago clearly swiped it while setting up the Wi-Fi router.</p>
-          <p><strong>Iago:</strong> (Falling to his knees, pleading to the judges) Curse you, modern end-to-end encrypted location services! I would have gotten away with ruling Venice if it weren’t for you meddling kids and your ecosystem connectivity!</p>
-          <p><strong>Othello:</strong> (To Iago) Guards! Cancel Iago’s subscription to life! Take him away to the dungeons—and block his MAC address from the palace Wi-Fi!</p>
-          <p class="stage-dir">(Iago is comically dragged off stage by the Narrator.)</p>
-          <p><strong>Othello:</strong> (Kneeling to Desdemona) O my fair warrior! Forgive my lack of trust. Technology hath saved me from a terrible mistake.</p>
-          <p><strong>Desdemona:</strong> (Patting his head) It’s fine, dear. Just upgrade my cloud storage to 2TB and we’ll call it even.</p>
+            <div class="dialogue">
+              <span class="character">Desdemona</span>
+              <span class="text">(Pleading) No, by my life and soul! Send for the man and ask him!</span>
+            </div>
 
-          <h3>Part 5: Final Bow</h3>
-          <p class="stage-dir">(The Narrator steps forward to address the judges as Othello and Desdemona strike a high-fashion editorial pose in the background.)</p>
-          <p><strong>Narrator:</strong> And so, a tragedy that took five acts of manipulation is solved in five seconds by a piece of tech the size of a coin. Shakespeare wrote about the dangers of blind trust—but a little data transparency goes a long way.</p>
-          <p class="stage-dir">(All actors take a fast, sharp, perfectly synchronized bow as the Tech hits a crisp, final “Success/Chime” sound effect.)</p>
+            <div class="dialogue">
+              <span class="character">Othello</span>
+              <span class="text">(Overcome with rage) Down, strumpet! It is too late!</span>
+            </div>
 
+            <div class="stage-dir">(Othello dramatically “smothers” Desdemona with a prop pillow. Desdemona freezes, comically collapsing. Othello weeps loudly. Music swells tragically.)</div>
+
+            <h3>Part 2: The “Tech Hack” Transition</h3>
+            <div class="stage-dir">(A loud, modern “System Error / Record Scratch” SFX blares. Neon blue lights flood the stage. Desdemona immediately sits up, throws the pillow back at Othello, and looks at the audience.)</div>
+            
+            <div class="dialogue">
+              <span class="character">Narrator</span>
+              <span class="text">(Blowing a whistle) Hold on! Stop the suffocating! It is the 21st century. Why are we ending marriages over misplaced laundry? Let’s hack history!</span>
+            </div>
+
+            <div class="stage-dir">(The Tech In-Charge plays a futuristic “Smart Device Startup” sound effect.)</div>
+            
+            <div class="dialogue">
+              <span class="character">Narrator</span>
+              <span class="text">What if Desdemona wasn’t just a Renaissance lady, but a tech-forward individual who tracked her belongings? Presenting… The Apple AirTag (Venice Edition).</span>
+            </div>
+
+            <h3>Part 3: The Hacked Ending (Satire & Innovation)</h3>
+            <div class="stage-dir">(The scene rewinds. Desdemona resets to sleeping. Othello is pacing, but this time, he is holding a large, over-sized cardboard smartphone. Iago sneaks up behind him, rubbing his hands together villainously.)</div>
+            
+            <div class="dialogue">
+              <span class="character">Iago</span>
+              <span class="text">(Whispering like a classic snake) O, beware, my lord, of jealousy; it is the green-eyed monster! Look to your wife. Did you not see her handkerchief in Cassio’s hand today?</span>
+            </div>
+
+            <div class="dialogue">
+              <span class="character">Othello</span>
+              <span class="text">(Gasps dramatically, clutching his heart) No! My heart is turned to stone! The strawberry handkerchief?! I am undone!</span>
+            </div>
+
+            <div class="dialogue">
+              <span class="character">Iago</span>
+              <span class="text">(Smirking to the audience) (Aside) My plan works perfectly. He believes me completely!</span>
+            </div>
+
+            <div class="dialogue">
+              <span class="character">Othello</span>
+              <span class="text">(Suddenly stops, looks at his giant phone) Wait a minute. Desdemona is terrible at keeping track of her things. She loses her keys, her crown, her mind… which is exactly why I attached an AirTag to that fabric! Let me open the Find My App.</span>
+            </div>
+
+            <div class="stage-dir">(Tech plays a loud “Radar Beeping / Sonar Ping” sound effect that speeds up.)</div>
+            
+            <div class="dialogue">
+              <span class="character">Othello</span>
+              <span class="text">(Staring at the screen, squinting) Let’s see… AirTag ‘Handkerchief’ is currently located… inside… Iago’s back pocket?!</span>
+            </div>
+
+            <div class="dialogue">
+              <span class="character">Iago</span>
+              <span class="text">(Eyes widen in absolute panic, freezing up) Uh… technological anomaly, my lord! A glitch in the Venetian matrix!</span>
+            </div>
+
+            <div class="dialogue">
+              <span class="character">Othello</span>
+              <span class="text">(Presses a button on his giant phone) Let me tap “Play Sound” to confirm.</span>
+            </div>
+
+            <div class="stage-dir">(Tech plays a loud, unmistakable, high-pitched Chirp-Chirp-Chirp AirTag sound. Iago frantically tries to slap his own pocket to muffle the sound.)</div>
+            
+            <div class="dialogue">
+              <span class="character">Othello</span>
+              <span class="text">(Marching over, pulling a giant cardboard handkerchief out of Iago’s pocket) Villain! Thou hast been pinged by local bluetooth location tracking!</span>
+            </div>
+
+            <h3>Part 4: The Comedic Twist & Conclusion</h3>
+            <div class="stage-dir">(Desdemona wakes up, wearing a pair of modern sunglasses, completely unbothered.)</div>
+            
+            <div class="dialogue">
+              <span class="character">Desdemona</span>
+              <span class="text">What is all this racket? Honestly, Othello, I told you I left it on the dining table, and Iago clearly swiped it while setting up the Wi-Fi router.</span>
+            </div>
+
+            <div class="dialogue">
+              <span class="character">Iago</span>
+              <span class="text">(Falling to his knees, pleading to the judges) Curse you, modern end-to-end encrypted location services! I would have gotten away with ruling Venice if it weren’t for you meddling kids and your ecosystem connectivity!</span>
+            </div>
+
+            <div class="dialogue">
+              <span class="character">Othello</span>
+              <span class="text">(To Iago) Guards! Cancel Iago’s subscription to life! Take him away to the dungeons—and block his MAC address from the palace Wi-Fi!</span>
+            </div>
+
+            <div class="stage-dir">(Iago is comically dragged off stage by the Narrator.)</div>
+            
+            <div class="dialogue">
+              <span class="character">Othello</span>
+              <span class="text">(Kneeling to Desdemona) O my fair warrior! Forgive my lack of trust. Technology hath saved me from a terrible mistake.</span>
+            </div>
+
+            <div class="dialogue">
+              <span class="character">Desdemona</span>
+              <span class="text">(Patting his head) It’s fine, dear. Just upgrade my cloud storage to 2TB and we’ll call it even.</span>
+            </div>
+
+            <h3>Part 5: Final Bow</h3>
+            <div class="stage-dir">(The Narrator steps forward to address the judges as Othello and Desdemona strike a high-fashion editorial pose in the background.)</div>
+            
+            <div class="dialogue">
+              <span class="character">Narrator</span>
+              <span class="text">And so, a tragedy that took five acts of manipulation is solved in five seconds by a piece of tech the size of a coin. Shakespeare wrote about the dangers of blind trust—but a little data transparency goes a long way.</span>
+            </div>
+
+            <div class="stage-dir">(All actors take a fast, sharp, perfectly synchronized bow as the Tech hits a crisp, final “Success/Chime” sound effect.)</div>
+
+          </div>
         </div>
       </div>
 
     </div>
 
+    <!-- Technical Production Details -->
     <div class="card">
-      <h2>📋 Production Info</h2>
-      <div class="info-grid">
-        <div class="info-card">
-          <h3>Target Grade Level</h3>
-          <p>Grades VII, VIII, or IX</p>
+      <div class="card-header">
+        <h2><span class="icon">⚙️</span> Production Specifications</h2>
+      </div>
+      <div class="card-body">
+        
+        <div class="info-grid">
+          <div class="info-stat">
+            <span>Target Level</span>
+            <strong>Grades VII – IX</strong>
+          </div>
+          <div class="info-stat">
+            <span>Estimated Duration</span>
+            <strong>⏱️ ~6 Minutes</strong>
+          </div>
+          <div class="info-stat">
+            <span>Ensemble Size</span>
+            <strong>4 Total Participants</strong>
+          </div>
         </div>
-        <div class="info-card">
-          <h3>Play Duration</h3>
-          <p>⏱️ ~6 Minutes</p>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim);">Cast & Role Profiles</h3>
+        
+        <div class="cast-grid">
+          <div class="cast-card">
+            <strong>Othello</strong>
+            <span>Intense, deeply dramatic, easily misled but powerful commanding presence.</span>
+          </div>
+          <div class="cast-card">
+            <strong>Iago</strong>
+            <span>The ultimate smooth-talking villain; sneaky timing and comedic flair.</span>
+          </div>
+          <div class="cast-card">
+            <strong>Desdemona / Narrator</strong>
+            <span>Sharp, exasperated, and completely innocent of any wrongdoing.</span>
+          </div>
+          <div class="cast-card">
+            <strong>Tech In-Charge</strong>
+            <span>Controls vital smartphone audio cues and live stage sound effects.</span>
+          </div>
         </div>
-        <div class="info-card" style="grid-column: span 2;">
-          <h3>Cast & Roles (4 Participants Total)</h3>
-          <ul class="cast-list">
-            <li><strong>Othello:</strong> Intense, deeply dramatic, easily misled but powerful.</li>
-            <li><strong>Iago:</strong> The ultimate, smooth-talking villain (comedic & sneaky).</li>
-            <li><strong>Desdemona / Narrator:</strong> Sharp, completely innocent, exasperated.</li>
-            <li><strong>Tech In-Charge:</strong> Controls vital smartphone audio cues & sound effects.</li>
-          </ul>
-        </div>
+
       </div>
     </div>
 
   </div>
 
+  <script>
+    // Lightweight UI/UX Controller for Teleprompter Text Zoom
+    function setFontScale(size, btnElement) {
+      document.documentElement.style.setProperty('--font-scale', size);
+      const buttons = btnElement.parentElement.querySelectorAll('.ux-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+    }
+  </script>
 </body>
 </html>
