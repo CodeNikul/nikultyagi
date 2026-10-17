@@ -11,18 +11,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@200;400;600;800;900&display=swap" rel="stylesheet">
 
     <style>
-        /* CSS Variables & Theme Setup - Premium Light Palette */
+        /* CSS Variables & Theme Setup - Premium Black, Gold & White Palette */
         :root {
-            --bg-main: #F8F9FA; /* Off-white/Light Gray */
-            --bg-card: #FFFFFF; /* Pure White */
-            --text-main: #0F172A; /* Deep Slate/Charcoal */
-            --text-muted: #64748B; /* Soft Gray */
-            --border-color: rgba(15, 23, 42, 0.1); /* Subtle dark border */
+            --bg-main: #050505; /* Deep black */
+            --bg-card: #101114; /* Elevated charcoal */
+            --text-main: #F5F7FA; /* Soft white */
+            --text-muted: #A1A1AA; /* Muted silver */
+            --border-color: rgba(255, 255, 255, 0.12); /* Subtle light border */
             
-            /* Vibrant Accents adapted for light theme */
-            --accent-blue: #2563EB; /* Royal Blue */
-            --accent-purple: #7C3AED; /* Deep Violet */
-            --gradient-primary: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            /* Electric blue and violet accents against black */
+            --accent-blue: #D4AF37; /* Elegant metallic gold */
+            --accent-purple: #F5D76E; /* Soft champagne gold */
+            --gradient-primary: linear-gradient(135deg, #D4AF37, #F5D76E);
             
             --font-display: 'Montserrat', sans-serif;
             --font-body: 'Inter', sans-serif;
@@ -56,13 +56,13 @@
             width: 100vw;
             height: 100vh;
             z-index: -1;
-            opacity: 0.4; /* Slightly lighter for light theme */
+            opacity: 0.48; /* Subtle network glow on black */
             pointer-events: none;
         }
 
         ::selection {
-            background-color: var(--accent-blue);
-            color: #ffffff;
+            background-color: #D4AF37;
+            color: #050505;
         }
 
         a {
@@ -85,7 +85,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: #FFFFFF;
+            background-color: #050505;
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -122,7 +122,7 @@
             background: var(--gradient-primary);
             margin-top: 2rem;
             transition: width 1.5s ease-in-out;
-            box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
 
         /* Global Layout */
@@ -160,7 +160,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: linear-gradient(to bottom, rgba(248,249,250,0.95), transparent);
+            background: linear-gradient(to bottom, rgba(5,5,5,0.96), transparent);
             backdrop-filter: blur(8px);
         }
 
@@ -223,7 +223,7 @@
             background: var(--gradient-primary);
             border-color: transparent;
             color: #ffffff;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
             transform: translateY(-2px);
         }
 
@@ -260,7 +260,7 @@
 
         .identity-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.12);
             border-color: var(--accent-blue);
         }
 
@@ -315,7 +315,7 @@
             height: 18px;
             border-radius: 50%;
             background-color: var(--accent-blue);
-            box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
             border: 3px solid var(--bg-main);
         }
 
@@ -369,7 +369,7 @@
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.12);
             border-color: transparent;
         }
 
@@ -430,9 +430,67 @@
             color: var(--accent-purple);
         }
 
+        /* Compact Medium articles tab */
+        .medium-tab-button {
+            position: fixed;
+            right: 18px;
+            bottom: 22px;
+            z-index: 1500;
+            border: 0;
+            border-radius: 999px;
+            padding: 12px 17px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: #050505;
+            background: var(--gradient-primary);
+            box-shadow: 0 10px 28px rgba(212, 175, 55, .24);
+            font: 700 12px var(--font-display);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .medium-tab-button:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(212, 175, 55, .32); }
+        .medium-tab-button .medium-mark { font: 900 19px Georgia, serif; text-transform: none; letter-spacing: 0; }
+        .medium-panel {
+            position: fixed;
+            right: 18px;
+            bottom: 78px;
+            z-index: 1499;
+            width: min(390px, calc(100vw - 28px));
+            max-height: min(68vh, 560px);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            background: rgba(16,17,20,.98);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 24px 70px rgba(0,0,0,.65);
+            backdrop-filter: blur(18px);
+        }
+        .medium-panel.open { display: flex; animation: mediumPanelIn .22s ease-out; }
+        @keyframes mediumPanelIn { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .medium-panel-head { padding: 18px 18px 14px; border-bottom: 1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; gap:12px; }
+        .medium-panel-head h3 { font: 800 17px var(--font-display); }
+        .medium-panel-head p { color: var(--text-muted); font-size: 12px; margin-top: 3px; }
+        .medium-close { border: 1px solid var(--border-color); background: #17150E; border-radius: 8px; width: 32px; height: 32px; cursor: pointer; font-size: 18px; color: var(--text-main); }
+        .medium-article-list { overflow-y: auto; padding: 8px 12px 12px; }
+        .medium-article { display:block; padding: 13px 10px; border-bottom: 1px solid rgba(255,255,255,.08); border-radius: 8px; transition: background .2s ease; }
+        .medium-article:hover { background: rgba(212,175,55,.12); }
+        .medium-article-title { display:block; font: 700 14px/1.45 var(--font-display); color: var(--text-main); }
+        .medium-article-meta { display:block; margin-top:5px; font-size:11px; color:var(--text-muted); }
+        .medium-status { padding: 16px 10px; color: var(--text-muted); font-size: 13px; line-height: 1.6; }
+        .medium-panel-foot { padding: 12px 18px; border-top: 1px solid var(--border-color); }
+        .medium-profile-link { color: var(--accent-blue); font-size: 12px; font-weight: 700; }
+        @media (max-width: 480px) {
+            .medium-tab-button { right: 12px; bottom: 14px; }
+            .medium-panel { right: 10px; bottom: 70px; max-height: 70vh; }
+        }
+
         /* The Building Visualizer Section */
         .building-section {
-            background: linear-gradient(to bottom, transparent, rgba(37, 99, 235, 0.05), transparent);
+            background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.055), transparent);
             text-align: center;
             padding: 20vh 5%;
             overflow: hidden;
@@ -451,7 +509,7 @@
             width: 32px;
             background: var(--gradient-primary);
             border-radius: 6px 6px 0 0;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
             animation: buildBlocks 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
         }
 
@@ -578,6 +636,21 @@
     <nav>
         <div class="logo gradient-text">NT.</div>
     </nav>
+
+    <!-- Small floating Medium tab: opens a list of all published articles -->
+    <button class="medium-tab-button" id="mediumTabButton" type="button" aria-expanded="false" aria-controls="mediumArticlesPanel">
+        <span class="medium-mark">M</span> Medium Articles <span aria-hidden="true">↗</span>
+    </button>
+    <aside class="medium-panel" id="mediumArticlesPanel" aria-label="Medium articles">
+        <div class="medium-panel-head">
+            <div><h3>My Medium Articles</h3><p>Stories, ideas &amp; lessons</p></div>
+            <button class="medium-close" id="mediumPanelClose" type="button" aria-label="Close articles">×</button>
+        </div>
+        <div class="medium-article-list" id="mediumArticleList" aria-live="polite">
+            <p class="medium-status">Loading articles…</p>
+        </div>
+        <div class="medium-panel-foot"><a class="medium-profile-link" id="mediumProfileLink" href="https://medium.com/" target="_blank" rel="noopener noreferrer">VISIT MY MEDIUM PROFILE ↗</a></div>
+    </aside>
 
     <!-- Main Content -->
     <main>
@@ -870,8 +943,8 @@
                     let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
                     let directionX = (Math.random() * 1) - 0.5;
                     let directionY = (Math.random() * 1) - 0.5;
-                    // Using the accent blue color for light theme dots
-                    let color = '#2563EB'; 
+                    // Using the gold accent for the black-and-gold network dots
+                    let color = '#D4AF37'; 
                     particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
                 }
             }
@@ -885,8 +958,8 @@
                         
                         if (distance < (canvas.width / 8) * (canvas.height / 8)) {
                             opacityValue = 1 - (distance / 20000);
-                            // Using the accent blue color for lines
-                            ctx.strokeStyle = `rgba(37, 99, 235, ${opacityValue * 0.15})`;
+                            // Using the gold accent for network lines
+                            ctx.strokeStyle = `rgba(212, 175, 55, ${opacityValue * 0.15})`;
                             ctx.lineWidth = 1;
                             ctx.beginPath();
                             ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -910,5 +983,74 @@
             animateCanvas();
         });
     </script>
+
+    <script>
+    (() => {
+        // IMPORTANT: replace this with your Medium username (without the @), e.g. "yourname".
+        const MEDIUM_USERNAME = "gpt776524";
+        const profileUrl = `https://medium.com/@${MEDIUM_USERNAME}`;
+        const feedUrl = `https://medium.com/feed/@${MEDIUM_USERNAME}`;
+        const button = document.getElementById('mediumTabButton');
+        const panel = document.getElementById('mediumArticlesPanel');
+        const closeButton = document.getElementById('mediumPanelClose');
+        const list = document.getElementById('mediumArticleList');
+        const profileLink = document.getElementById('mediumProfileLink');
+        profileLink.href = profileUrl;
+
+        function setPanel(open) {
+            panel.classList.toggle('open', open);
+            button.setAttribute('aria-expanded', String(open));
+            if (open && !panel.dataset.loaded) loadArticles();
+        }
+        button.addEventListener('click', () => setPanel(!panel.classList.contains('open')));
+        closeButton.addEventListener('click', () => setPanel(false));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') setPanel(false); });
+
+        function safeText(value) {
+            const el = document.createElement('span');
+            el.textContent = value || '';
+            return el.textContent;
+        }
+        async function loadArticles() {
+            if (!MEDIUM_USERNAME) {
+                list.innerHTML = '<p class="medium-status">Add your Medium username in the website code to automatically show all your published articles here.</p>';
+                return;
+            }
+            list.innerHTML = '<p class="medium-status">Loading your latest articles…</p>';
+            try {
+                const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Feed request failed');
+                const data = await response.json();
+                if (data.status !== 'ok' || !Array.isArray(data.items)) throw new Error('Feed unavailable');
+                list.replaceChildren();
+                if (!data.items.length) {
+                    list.innerHTML = '<p class="medium-status">No published articles were found on this feed yet.</p>';
+                } else {
+                    data.items.forEach(item => {
+                        const article = document.createElement('a');
+                        article.className = 'medium-article';
+                        article.href = item.link;
+                        article.target = '_blank';
+                        article.rel = 'noopener noreferrer';
+                        const title = document.createElement('span');
+                        title.className = 'medium-article-title';
+                        title.textContent = safeText(item.title || 'Untitled article');
+                        const meta = document.createElement('span');
+                        meta.className = 'medium-article-meta';
+                        const date = item.pubDate ? new Date(item.pubDate) : null;
+                        meta.textContent = date && !Number.isNaN(date.getTime()) ? date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : 'Medium article';
+                        article.append(title, meta);
+                        list.appendChild(article);
+                    });
+                }
+                panel.dataset.loaded = 'true';
+            } catch (error) {
+                list.innerHTML = '<p class="medium-status">I couldn’t load the article feed right now. Check your Medium username, or use the profile link below.</p>';
+            }
+        }
+    })();
+    </script>
+
 </body>
 </html>
